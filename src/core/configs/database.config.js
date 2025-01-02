@@ -3,7 +3,7 @@ module.exports = {
         host: 'localhost',
         user: 'root',
         password: '123456',
-        database: 'myblog'
+        database: 'test'
     },
     mongodb: {
         host: 'localhost',
