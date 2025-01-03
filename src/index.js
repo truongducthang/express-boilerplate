@@ -7,27 +7,28 @@ const clientEureka = require('./core/configs/eureka');
 let server;
 
 // Connect to mongoose
-mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
-  logger.info('Connected to MongoDB');
-  server = app.listen(config.port, () => {
-    logger.info(`Listening to port ${config.port}`);
+mongoose
+  .connect(config.mongoose.url, config.mongoose.options)
+  .then(() => {
+    logger.info('Connected to MongoDB');
+    server = app.listen(config.port, () => {
+      logger.info(`Listening to port ${config.port}`);
+    });
+  })
+  .catch((err) => {
+    logger.error('Error connect MongoDB');
   });
-}).catch(err => {
-  logger.error('Error connect MongoDB');
-});
 
 // Connect Eureka
 if (config.env === 'production') {
   clientEureka.start((error) => {
     if (error) {
       logger.error('Eureka registration failed:', error);
-
     } else {
       logger.info('Eureka registration successful');
     }
   });
 }
-
 
 // Service handlers for connect
 const exitHandler = () => {

@@ -17,6 +17,8 @@ const { errorConverter, errorHandler } = require('./core/middlewares/error');
 const ApiError = require('./core/utils/ApiError');
 const routesV1 = require('./routes/v1');
 const routesV2 = require('./routes/v2');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger/swagger-output.json');
 
 const app = express();
 
@@ -50,7 +52,7 @@ app.options('*', cors());
 
 // Routes
 // Folder public
-app.use('/public',express.static(path.join(__dirname, '../public')));
+app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use('/favicon.ico', express.static(path.join(__dirname, '../public/favicon.ico')));
 
 // jwt authentication
@@ -61,6 +63,9 @@ passport.use('jwt', jwtStrategy);
 if (config.env === 'production') {
   app.use('/api/v1/auth', authLimiter);
 }
+
+// Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // v1 api routes
 // Limit request from the same API

@@ -3,43 +3,30 @@ const baseRoute = require('./base/base.route');
 const authRoute = require('./auth/auth.route');
 const userRoute = require('./user/user.route');
 const config = require('../../core/configs/config');
+const { cloneDeep } = require('lodash');
+const { path } = require('../../app');
 
 const router = express.Router();
 
-const defaultRoutes = [
+const routesV1 = [
   {
-    path: '/base',
+    path: 'base',
     route: baseRoute,
   },
   {
-    path: '/auth',
+    path: 'auth',
     route: authRoute,
   },
   {
-    path: '/users',
+    path: 'users',
     route: userRoute,
   },
 ];
 
+// router.use(`/base`, baseRoute);
 
-
-defaultRoutes.forEach((route) => {
-  router.use(route.path, route.route);
+routesV1.forEach((route) => {
+  router.use(`/${route.path}`, require(route.pathFolder));
 });
-
-/* istanbul ignore next */
-// const devRoutes = [
-//   // routes available only in development mode
-//   {
-//     path: '/docs',
-//     route: docsRoute,
-//   },
-// ];
-
-// if (config.env === 'development') {
-//   devRoutes.forEach((route) => {
-//     router.use(route.path, route.route);
-//   });
-// }
 
 module.exports = router;
