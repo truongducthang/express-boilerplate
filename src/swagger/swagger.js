@@ -14,10 +14,12 @@ const docTemplate = {
       description: 'Authentication related API routes, such as register, login, logout, and token refresh',
     },
     {
-      name: 'users',
+      name: 'User',
       description: 'User management routes',
     },
   ],
+  securityDefinitions: {},
+  definitions: {}
 };
 
 const endpointsFiles = ['../app.js'];

@@ -13,16 +13,20 @@
       "description": "Authentication related API routes, such as register, login, logout, and token refresh"
     },
     {
-      "name": "users",
+      "name": "User",
       "description": "User management routes"
     }
   ],
   "schemes": [
     "http"
   ],
+  "securityDefinitions": {},
   "paths": {
     "/api/v1/base/ping": {
       "get": {
+        "tags": [
+          "Base"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -229,6 +233,9 @@
     },
     "/api/v1/user/": {
       "get": {
+        "tags": [
+          "User"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -237,6 +244,9 @@
         }
       },
       "post": {
+        "tags": [
+          "User"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -247,6 +257,9 @@
     },
     "/api/v1/user/{userId}": {
       "get": {
+        "tags": [
+          "User"
+        ],
         "description": "",
         "parameters": [
           {
@@ -263,6 +276,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "User"
+        ],
         "description": "",
         "parameters": [
           {
@@ -279,6 +295,9 @@
         }
       },
       "patch": {
+        "tags": [
+          "User"
+        ],
         "description": "",
         "parameters": [
           {
@@ -297,6 +316,9 @@
     },
     "/api/v2/base/ping": {
       "get": {
+        "tags": [
+          "Base"
+        ],
         "description": "",
         "responses": {
           "200": {
