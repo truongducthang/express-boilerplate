@@ -7,7 +7,7 @@ const docTemplate = {
   },
   host: 'localhost:3000',
   schemes: ['http'],
-  basePath: '/api',
+  basePath: '/',
   tags: [
     {
       name: 'Auth',
