@@ -2,14 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 
-const defaultRoutes = [
-
-];
-
-
-
-defaultRoutes.forEach((route) => {
-  router.use(route.path, route.route);
-});
+router.use('/base', require('./base/base.route'))
 
 module.exports = router;
